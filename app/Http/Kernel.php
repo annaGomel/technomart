@@ -36,6 +36,13 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+		
+        'shop' => [
+            \App\Frontend\Middleware\SessionCart::class,
+            \App\Frontend\Middleware\MenuInit::class,
+            \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class,
+            \Spatie\Pjax\Middleware\FilterIfPjax::class,
+        ],
 
         'api' => [
             'throttle:60,1',

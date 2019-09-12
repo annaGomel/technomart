@@ -165,6 +165,11 @@ return [
         /*
          * Package Service Providers...
          */
+        Lavary\Menu\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        LukePOLO\LaraCart\LaraCartServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -224,6 +229,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Menu' => Lavary\Menu\Facade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'LaraCart' => LukePOLO\LaraCart\Facades\LaraCart::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
