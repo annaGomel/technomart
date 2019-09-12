@@ -16,6 +16,9 @@
         <li>
             <a href="#">Контакты</a>
         </li>
+        <li>
+            <a href="#">Админ</a>
+        </li>
     </ul>
 </div>
 <div class="footer-middle-panel container clearfix">

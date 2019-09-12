@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 08 2019 г., 14:04
+-- Время создания: Сен 12 2019 г., 17:35
 -- Версия сервера: 5.6.41
 -- Версия PHP: 7.2.10
 
@@ -21,6 +21,154 @@ SET time_zone = "+00:00";
 --
 -- База данных: `technomart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_config`
+--
+
+CREATE TABLE `admin_config` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_menu`
+--
+
+CREATE TABLE `admin_menu` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `order` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uri` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_operation_log`
+--
+
+CREATE TABLE `admin_operation_log` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `method` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `input` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_permissions`
+--
+
+CREATE TABLE `admin_permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `http_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `http_path` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_roles`
+--
+
+CREATE TABLE `admin_roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_role_menu`
+--
+
+CREATE TABLE `admin_role_menu` (
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_role_permissions`
+--
+
+CREATE TABLE `admin_role_permissions` (
+  `role_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_role_users`
+--
+
+CREATE TABLE `admin_role_users` (
+  `role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admin_user_permissions`
+--
+
+CREATE TABLE `admin_user_permissions` (
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -98,7 +246,8 @@ INSERT INTO `menus` (`id`, `slug`, `title`, `position`, `sort`, `is_active`) VAL
 (2, 'company', 'Компания', 'top', 4, 1),
 (3, 'catalog', 'Каталог', 'top', 3, 1),
 (4, 'news', 'Новости', 'top', 2, 1),
-(5, 'contacts', 'Контакты', 'top', 5, 1);
+(5, 'contacts', 'Контакты', 'top', 5, 1),
+(6, 'admin', 'Админ', 'top', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +275,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2019_02_09_151822_create_menus_table', 5),
 (11, '2019_02_09_153515_create_settings_table', 6),
 (12, '2019_02_09_164817_create_categories_table', 7),
-(13, '2019_02_09_174222_create_orders_table', 8);
+(13, '2019_02_09_174222_create_orders_table', 8),
+(14, '2016_01_04_173148_create_admin_tables', 9),
+(15, '2017_07_17_040159_create_config_table', 9);
 
 -- --------------------------------------------------------
 
@@ -241,7 +392,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `phone`, `logo`, `social_vk_link`, `social_ok_link`, `address`) VALUES
-(1, '+7 (812) 555-05-44', 'logo.png', 'vk.com', '', 'г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8');
+(1, '+375(29)567-39-30', 'logo.png', 'vk.com', '', 'г Гомель Богдана  Хмельницкого 231 к2');
 
 -- --------------------------------------------------------
 
@@ -263,6 +414,71 @@ CREATE TABLE `users` (
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `admin_config`
+--
+ALTER TABLE `admin_config`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_config_name_unique` (`name`);
+
+--
+-- Индексы таблицы `admin_menu`
+--
+ALTER TABLE `admin_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `admin_operation_log`
+--
+ALTER TABLE `admin_operation_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_operation_log_user_id_index` (`user_id`);
+
+--
+-- Индексы таблицы `admin_permissions`
+--
+ALTER TABLE `admin_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_permissions_name_unique` (`name`);
+
+--
+-- Индексы таблицы `admin_roles`
+--
+ALTER TABLE `admin_roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_roles_name_unique` (`name`);
+
+--
+-- Индексы таблицы `admin_role_menu`
+--
+ALTER TABLE `admin_role_menu`
+  ADD KEY `admin_role_menu_role_id_menu_id_index` (`role_id`,`menu_id`);
+
+--
+-- Индексы таблицы `admin_role_permissions`
+--
+ALTER TABLE `admin_role_permissions`
+  ADD KEY `admin_role_permissions_role_id_permission_id_index` (`role_id`,`permission_id`);
+
+--
+-- Индексы таблицы `admin_role_users`
+--
+ALTER TABLE `admin_role_users`
+  ADD KEY `admin_role_users_role_id_user_id_index` (`role_id`,`user_id`);
+
+--
+-- Индексы таблицы `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_users_username_unique` (`username`);
+
+--
+-- Индексы таблицы `admin_user_permissions`
+--
+ALTER TABLE `admin_user_permissions`
+  ADD KEY `admin_user_permissions_user_id_permission_id_index` (`user_id`,`permission_id`);
 
 --
 -- Индексы таблицы `categories`
@@ -329,6 +545,42 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `admin_config`
+--
+ALTER TABLE `admin_config`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `admin_menu`
+--
+ALTER TABLE `admin_menu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `admin_operation_log`
+--
+ALTER TABLE `admin_operation_log`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `admin_permissions`
+--
+ALTER TABLE `admin_permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `admin_roles`
+--
+ALTER TABLE `admin_roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
@@ -344,13 +596,13 @@ ALTER TABLE `manufacturers`
 -- AUTO_INCREMENT для таблицы `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
