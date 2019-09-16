@@ -5,6 +5,7 @@ namespace App\Providers;
 use DB;
 
 use Illuminate\Support\ServiceProvider;
+use Encore\Admin\Config\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
         \View::share('menus', $menus);
         \View::share('settings', \App\Setting::firstOrFail());
+        Config::load();
     }
 
     /**

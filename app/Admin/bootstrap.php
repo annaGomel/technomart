@@ -21,7 +21,7 @@ use App\Admin\Extensions\Nav\Links;
  *
  */
 
-Form::forget(['map', 'editor']);
+Encore\Admin\Form::forget(['map', 'editor']);
 
 Form::extend('wangeditor', WangEditor::class);
 

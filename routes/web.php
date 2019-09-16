@@ -40,3 +40,15 @@ Route::get('/{slug}', 'PageController@show')->name('show.page');
 //Route::post('/search', 'SearchController@search')->name('search');
 
 Route::get('/get-add-to-cart/{id}', 'ProductController@getAddToCart')->name('add.to.cart');
+
+// Authentication routes...
+Route::post('register', 'Auth\LoginController@register')->name('register');
+
+
+Route::group(['prefix' => 'admin','namespace' => 'Auth'],function(){
+    // Authentication Routes...
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout')->name('logout');
+
+});

@@ -16,19 +16,6 @@
     <!-- ./col -->
     <div class="col-lg-12">
         <!-- small box -->
-        <div class="small-box bg-yellow">
-            <div class="inner">
-                <h3>{{ $revenue }} $</h3>
-                <p>Revenue generated</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-person-add"></i>
-            </div>
-        </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-12">
-        <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>{{ $products }}</h3>
@@ -51,7 +38,7 @@
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="/admin/categories" class="small-box-footer">To caterories <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/shop/categories') }}" class="small-box-footer">To caterories <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->

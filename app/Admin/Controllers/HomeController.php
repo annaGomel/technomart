@@ -26,12 +26,12 @@ class HomeController extends Controller
 
                 $row->column(4, function (Column $column) {
                     $stats = array();
-                    $stats['categories'] = DB::table('shop_categories')->count();
-                    $stats['products'] = DB::table('shop_products')->count();
+                    $stats['categories'] = DB::table('categories')->count();
+                    $stats['products'] = DB::table('products')->count();
 //                $stats['pages'] = DB::table('pages')->count();
-                    $stats['orders'] = DB::table('shop_orders')->count();
-                    $stats['revenue'] = DB::table('shop_orders')->sum('total');
-                    $column->append( view('admin.dashboard', ['orders' => $stats['orders'], 'revenue' => $stats['revenue'], 'products' => $stats['products'], 'categories' => $stats['categories']]) );
+                    $stats['orders'] = DB::table('orders')->count();
+//                    $stats['revenue'] = DB::table('shop_orders')->sum('total');
+                    $column->append( view('admin.dashboard', ['orders' => $stats['orders'],  'products' => $stats['products'], 'categories' => $stats['categories']]) );
                 });
 
                 $row->column(4, function (Column $column) {

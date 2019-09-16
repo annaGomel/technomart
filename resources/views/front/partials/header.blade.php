@@ -23,9 +23,14 @@
             <p class="header-contacts-address">{{ $settings->address }}</p>
         </div>
         <div class="header-middle-user header-user-connected">
-            <a href="#" class="header-user-login">Войти</a>
-            <a href="#" class="header-user-registration">Регистрация</a>
+                @if (Auth::check())
+                    <a href="{{ route('logout') }}" class="header-user-login">Выйти</a>
+                    @else
+                   <a href="{{ route('login') }}" class="header-user-login">Войти</a>
+                   <a href="{{ route('register') }}"  class="header-user-registration">Регистрация</a>
+                @endif
         </div>
+
     </div>
     <nav class="header-bottom-panel">
         @foreach($menus as $item)
