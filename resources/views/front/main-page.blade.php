@@ -57,13 +57,13 @@
                         <img src="{{ asset('img') . '/' . $product->image }}" width="218" height="169" alt="Перфоратор Bosch BFG 9000">
                     </figure>
                     <div class="catalog-item-buttons">
-                        <a href="{{ route('add.to.cart', ['id' => $product->id]) }}" role="button" style="font-size: 16px;">Купить</a>
                         <a href="{{ route('show.product', $product->slug) }}" class="catalog-button catalog-item-bookmark">Подробнее</a>
                     </div>
                     <p class="catalog-item-vendor">{{ $product->title }}</p>
                     <p class="catalog-item-model">{{ $product->model }}</p>
                     <p class="catalog-item-price" style="height: 27px;">{{ $product->old_price ? $product->old_price : '' }}</p>
                     <p class="catalog-item-discount">{{ $product->price }}</p>
+                    <a href="{{ route('add.to.cart', ['id' => $product->id]) }}" role="button" style="font-size: 16px;text-align: center;display: block; margin-bottom: 10px;">Купить</a>
                 </div>
             @endforeach
         </section>
@@ -135,8 +135,8 @@
             <section class="right-column company-contacts-column">
                 <h2 class="company-contacts-title">Контакты</h2>
                 <p class="company-contacts-info">Вы можете забрать товар сами, заехав в наш офис:</p>
-                <a href="img/company-contacts-map.jpg" class="company-contacts-map">
-                    <img src="img/company-contacts-map.jpg" width="300" height="160" alt="Мы на карте">
+                <a href="img/company-contacts-mapnew.jpg" class="company-contacts-map">
+                    <img src="img/company-contacts-mapnew.jpg" width="300" height="160" alt="Мы на карте">
                 </a>
                 <a href="#" class="company-feedback-btn">Заблудились? Напишите нам!</a>
             </section>

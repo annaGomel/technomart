@@ -37,8 +37,8 @@
 </footer>
     @include('front.partials.notifications')
 
-<script src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false">
-</script>
+{{--<script src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false">--}}
+{{--</script>--}}
 
 <script src="{{ asset('js/script.min.js') }}"></script>
 </body>

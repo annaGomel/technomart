@@ -9,11 +9,8 @@ use App\ProductFilter\ProductFilter;
 
 class SearchController extends Controller
 {
-    public static function filter(Request $request, Builder $builder) {
-     $products = ProductFilter::applyFiltersToQuery($request, $builder);
-
-    	dd($products);
-
+    public static function filter(Request $request) {
+        $products = Product::where('title', 'LIKE', $request->input('search'))->get();
 
         return view('front.search-page', compact('products'));
     }

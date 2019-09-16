@@ -4,7 +4,9 @@
             <img src="img/map.jpg" width="940" height="447" alt="Мы на карте">
         </figure>
     </noscript>
-    <div class="map-script"></div>
+    <div class="map-script">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7ebf553ed69bf4fa94db06e2675882981ea29dd3b49299094a64582c4c99ccee&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
     <a href="#" class="map-close"></a>
 </div>
 <div class="feedback container">

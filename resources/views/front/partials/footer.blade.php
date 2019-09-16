@@ -44,7 +44,7 @@
 <div class="footer-bottom-panel">
     <div class="container clearfix">
         <div class="footer-bottom-copyright">
-            <p>© 2010-2013 Компания «Техномарт»</p>
+            <p>© 2018-2019 Компания «Техномарт»</p>
             <p>Все права защищены</p>
         </div>
         <div class="footer-bottom-social">
@@ -54,11 +54,11 @@
         </div>
         <div class="footer-bottom-feedback">
             <p>Обратная связь:</p>
-            <a href="mailto:info@technomart.ru" class="footer-feedback-mail">info@technomart.ru</a>
+            <a href="mailto:info@technomart.by" class="footer-feedback-mail">info@technomart.by</a>
         </div>
         <div class="footer-bottom-design">
             <p>Дизайн сайта -</p>
-            <a href="#" class="footer-design-author">glukhanko.ru</a>
+            <a href="#" class="footer-design-author">annaGomel@mail.by</a>
         </div>
     </div>
 </div>

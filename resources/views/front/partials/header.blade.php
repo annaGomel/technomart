@@ -19,7 +19,7 @@
     <div class="header-middle-panel clearfix">
         <p class="header-middle-block header-middle-about">Интернет-магазин строительных материалов и инструментов для ремонта</p>
         <div class="header-middle-contacts">
-            <p class="header-contacts-telephone">{{ $settings->phone }}</p>
+            <p class="header-contacts-telephone"><a href="tel:{{ $settings->phone }}">{{ $settings->phone}}</a></p>
             <p class="header-contacts-address">{{ $settings->address }}</p>
         </div>
         <div class="header-middle-user header-user-connected">

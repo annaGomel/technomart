@@ -20,7 +20,7 @@ Route::get('/catalog', 'ProductController@catalog')->name('show.catalog');
 Route::get('/category/{slug}', 'CategoryController@index')->name('show.category');
 //Route::get('/{slug}', 'PageController@show')->name('show.page');
 Route::get('/search', 'SearchController@filter')->name('search');
-//Route::get('/search', 'SearchController@search');
+Route::post('/search', 'SearchController@filter');
 
 
 Route::get('/show-cart', 'ProductController@showCart')->name('show.cart');
