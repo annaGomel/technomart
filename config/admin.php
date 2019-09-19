@@ -10,7 +10,7 @@ return [
     /*
      * Logo in admin panel header.
      */
-    'logo' => '<b>Lashop</b> admin',
+    'logo' => '<b>Technomart</b> admin',
 
     /*
      * Mini-logo in admin panel header.
@@ -156,6 +156,14 @@ return [
      * Settings for extensions.
      */
     'extensions' => [
+        'wang-editor' => [
+            // 如果要关掉这个扩展，设置为false
+            'enable' => true,
+            // 编辑器的配置
+            'config' => [
+            ]
+    ]
+]
 
-    ],
+    ,
 ];

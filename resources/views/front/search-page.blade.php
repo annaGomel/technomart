@@ -12,7 +12,7 @@
             @foreach($products as $product)
                 <div class="catalog-item" style="width:30%">
                     <figure class="catalog-item-image">
-                        <img src="{{ asset('img') . '/' . $product->image }}" width="218" height="169" alt="Перфоратор Bosch BFG 9000">
+                        <img src="{{ asset('uploads') . '/' . $product->image }}" width="218" height="169" alt="Перфоратор Bosch BFG 9000">
                     </figure>
                     <div class="catalog-item-buttons">
                         <a href="#" class="catalog-button catalog-item-buy">Купить</a>

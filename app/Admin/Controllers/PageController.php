@@ -3,7 +3,7 @@ namespace App\Admin\Controllers;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
-use App\Models\Page;
+use App\Page;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
@@ -101,7 +101,7 @@ class PageController extends Controller
         return Page::form(function (Form $form) {
             $form->text('title')->rules('required');
             $form->text('slug')->rules('required');
-            $form->wangeditor('fulldesc', 'Description');
+            $form->textarea('fulldesc', 'Description');
             $form->textarea('meta_desc', 'Meta Description')->rows(2);
             $form->textarea('meta_key', 'Meta Keywords')->rows(2);
 //            $form->display('created_at', 'Created At');

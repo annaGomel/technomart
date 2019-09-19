@@ -4,7 +4,8 @@ namespace App\Admin\Controllers\Shop;
 use App\Http\Controllers\Controller;
 //use App\Models\Shop\Category;
 //use App\Models\Shop\Product;
-use App\Models\Shop\Order;
+use App\Order;
+use Encore\Admin\Show;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -42,18 +43,22 @@ class OrderController extends Controller
         return Admin::grid(Order::class, function (Grid $grid) {
             $grid->model()->orderBy('created_at', 'desc');
             $grid->id();
-            $grid->name()->editable();
-            $grid->email()->editable();
-            $grid->phone()->editable();
-            $grid->comment()->editable();
-            $grid->order()->display(function ($order) {
+            $grid->customer_id()->editable();
+            $grid->order_number()->editable();
+            $grid->transaction_date()->editable();
+            $grid->status()->editable();
+            /**
+            $grid->order_number()->display(function ($order) {
                 return html_entity_decode($order);
             });
-            $grid->total()->editable();
+             */
+
+            $grid->total_amount()->editable();
             $grid->disableExport();
             $grid->disableFilter();
             $grid->created_at();
             $grid->updated_at();
+
         });
     }
 
@@ -100,16 +105,39 @@ class OrderController extends Controller
      */
     protected function form()
     {
+
         return Order::form(function (Form $form) {
             $form->display('id', 'ID');
-            $form->text('name');
-            $form->text('email');
-            $form->text('phone');
-            $form->textarea('comment')->rows(2);;
-            $form->wangeditor('order', 'Order');
-            $form->text('total');
+            $form->text('status');
+            $form->text('customer_id');
+            $form->textarea('order_number', 'Order');
+            $form->text('total_amount');
+            $form->date('transaction_date', 'Transaction At');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
+       //   $form->display('deleted_at', 'deleted At');
         });
+    }
+
+
+    /**
+     * Make a show builder.
+     *
+     * @param mixed   $id
+     * @return Show
+     */
+    protected function show($id)
+    {
+        $show = new Show(Order::findOrFail($id));
+
+        $show->field('id', __('ID'));
+        $show->field('customer_id', __('Customer'));
+        $show->field('order_number', __('Order'));
+        $show->field('total_amount', 'Total amount');
+        $show->field('created_at', __('Created at'));
+        $show->field('updated_at', __('Updated at'));
+        $show->field('transaction_date', __('Transaction At'));
+
+        return $show;
     }
 }

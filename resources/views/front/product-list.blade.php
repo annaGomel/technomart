@@ -57,7 +57,7 @@
                     @foreach($products as $product)
                         <div class="catalog-item">
                             <figure class="catalog-item-image">
-                                <img src="{{ asset('img') . '/' . $product->image }}" width="218" height="169" alt="{{ $product->title }}">
+                                <img src="{{ asset('uploads') . '/' . $product->image }}" width="218" height="169" alt="{{ $product->title }}">
                             </figure>
                             <div class="catalog-item-buttons">
                                 <a href="#" class="catalog-button catalog-item-buy">Купить</a>

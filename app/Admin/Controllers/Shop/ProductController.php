@@ -1,14 +1,14 @@
 <?php
 namespace App\Admin\Controllers\Shop;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Category;
-use App\Models\Shop\Product;
+use App\Category;
+use App\Product;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Show;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
-use Encore\Admin\Tree;
 class ProductController extends Controller
 {
     use ModelForm;
@@ -41,18 +41,16 @@ class ProductController extends Controller
             $grid->id();
             $grid->title()->editable();
             $grid->slug();
-//            $grid->photo()->image();
+//          $grid->photo()->image();
             $grid->cost();
-//            $grid->disableActions();
-//            $grid->disableBatchDeletion();
+//          $grid->disableActions();
+//          $grid->disableBatchDeletion();
             $grid->disableExport();
-//            $grid->disableCreation();
+//          $grid->disableCreation();
             $grid->disableFilter();
             $grid->created_at();
             $grid->updated_at();
-            $grid->actions(function ($actions) {
-                $actions->prepend('<a href="/'.$actions->row->id.'-'.$actions->row->slug.'" target="_blank"><i class="fa fa-eye"></i></a>');
-            });
+
         });
     }
 
@@ -103,15 +101,44 @@ class ProductController extends Controller
             $form->display('id', 'ID');
             $form->text('title')->rules('required');
             $form->text('slug')->rules('required');
-            $form->select('cat_id', 'Category')->options(Category::all()->pluck('title','id'));
-            $form->image('photo');
-            $form->wangeditor('fulldesc', 'Description');
-            $form->text('cost');
-            $form->textarea('meta_desc', 'Meta Description')->rows(2);
-            $form->textarea('meta_key', 'Meta Keywords')->rows(2);
-            $form->switch('status', 'Active');
+            $form->select('category_id', 'Category')->options(Category::all()->pluck('title','id'));
+            $form->image('image', 'photo');
+            $form->textarea('content', 'Description');
+            $form->text('price');
+            $form->textarea('meta_description', 'Meta Description')->rows(2);
+            $form->textarea('seo_title', 'SEO Title')->rows(2);
+            $form->switch('is_active', 'Active');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });
     }
+
+    /**
+     * Make a show builder.
+     *
+     * @param mixed   $id
+     * @return Show
+     */
+    protected function show($id)
+    {
+        $show = new Show(Product::findOrFail($id));
+
+        $show->field('id', __('ID'));
+        $show->field('title', __('Title'));
+        $show->field('slug', __('Slug'));
+        $show->field('category_id', 'Category');
+        $show->field('image', 'Photo');
+        $show->field('content', 'Description');
+        $show->field('price');
+        $show->field('meta_description', 'Meta Description');
+        $show->field('seo_title', 'SEO Title');
+        $show->field('is_active', 'Active');
+        $show->field('created_at', __('Created at'));
+        $show->field('updated_at', __('Updated at'));
+
+
+        return $show;
+    }
+
+
 }

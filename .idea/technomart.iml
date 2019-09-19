@@ -32,6 +32,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-admin-ext/backup" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-admin-ext/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-admin-ext/media-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-admin-ext/wang-editor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/nexmo-notification-channel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/slack-notification-channel" />

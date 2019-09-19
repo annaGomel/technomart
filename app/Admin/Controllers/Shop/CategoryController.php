@@ -1,9 +1,10 @@
 <?php
 namespace App\Admin\Controllers\Shop;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Category;
+use App\Category;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Show;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
@@ -89,15 +90,37 @@ class CategoryController extends Controller
     {
         return Category::form(function (Form $form) {
             $form->display('id', 'ID');
-            $form->select('parent_id')->options(Category::selectOptions());
-            $form->text('title')->rules('required');
+            $form->select('parent_id','Parent Category' )->options(Category::selectOptions());
+            $form->text('title', 'Title')->rules('required');
             $form->text('slug')->rules('required');
-            $form->textarea('fulldesc', 'Description')->rules('required');
+            $form->textarea('description', 'Description')->rules('required');
             $form->image('logo');
-            $form->textarea('meta_desc', 'Meta Description')->rows(2);
-            $form->textarea('meta_key', 'Meta Keywords')->rows(2);
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });
     }
+
+    /**
+     * Make a show builder.
+     *
+     * @param mixed   $id
+     * @return Show
+     */
+    protected function show($id)
+    {
+        $show = new Show(Category::findOrFail($id));
+
+        $show->field('id', __('ID'));
+        $show->field('parent_id', 'Parent Category');
+        $show->field('title', __('Title'));
+        $show->field('slug', __('Slug'));
+        $show->field('logo', 'Logo');
+        $show->field('description', 'Description');
+        $show->field('created_at', __('Created at'));
+        $show->field('updated_at', __('Updated at'));
+
+        return $show;
+    }
+
+
 }

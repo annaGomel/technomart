@@ -54,7 +54,7 @@
             @foreach($products as $product)
                 <div class="catalog-item {{ $product->is_new == 1 ? 'new-item' : '' }}">
                     <figure class="catalog-item-image">
-                        <img src="{{ asset('img') . '/' . $product->image }}" width="218" height="169" alt="Перфоратор Bosch BFG 9000">
+                        <img src="{{ asset('uploads') . '/' . $product->image }}"  width="218" height="169" alt="Перфоратор Bosch BFG 9000">
                     </figure>
                     <div class="catalog-item-buttons">
                         <a href="{{ route('show.product', $product->slug) }}" class="catalog-button catalog-item-bookmark">Подробнее</a>

@@ -16,6 +16,7 @@
         "laravel-admin-ext/backup": "v1.0.2",
         "laravel-admin-ext/config": "v1.0.1",
         "laravel-admin-ext/media-manager": "v1.0.1",
+        "laravel-admin-ext/wang-editor": "^1.1",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "v5.7.1",

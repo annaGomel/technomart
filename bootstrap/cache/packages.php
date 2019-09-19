@@ -96,6 +96,13 @@
       0 => 'Encore\\Admin\\Media\\MediaServiceProvider',
     ),
   ),
+  'laravel-admin-ext/wang-editor' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Encore\\WangEditor\\WangEditorServiceProvider',
+    ),
+  ),
   'laravel/nexmo-notification-channel' => 
   array (
     'providers' => 
